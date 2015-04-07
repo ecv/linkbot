@@ -65,50 +65,7 @@ print <<EOHTML;
 EOHTML
 
 	print "As of ", scalar localtime(time), " - $total total URLs<br>";
-	print <<EOHTML;
-
-<h2 id="topviewed-heading">$TOP Most Viewed</h2>
-
-<table class="url-table">
-  <thead>
-    <tr>
-      <th>Count</th>
-      <th>Date Added</th>
-      <th>Who</th>
-      <th>Code</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-EOHTML
-	$q = sprintf("
-SELECT real_url, encoded_url, username, count, unix_timestamp(date)
- FROM urls
- ORDER BY count desc, date desc limit %s
-", $TOP);
-	my $sth = $dbh->prepare($q);
-	$sth->execute();
-	while (my @r = $sth->fetchrow_array) {
-		my ($url, $code, $who, $count, $when) = @r;
-		my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($when);
-		$year+=1900;
-		$mon++;
-		$who =~ s/\s/&nbsp;/g;
-		my $date = sprintf("%04d/%02d/%02d&nbsp;%02d:%02d:%02d",
-			$year, $mon, $mday, $hour, $min, $sec);
-		$url =~ s/\&/\&amp;/g;
-		print <<EOHTML;
-    <tr>
-      <td class="numeral-td">$count</td>
-      <td class="date-td">$date</td>
-      <td>$who</td>
-      <td><a href="$webhost$code">$code</a></td>
-      <td class="url-td"><a href="$webhost$code">$url</a></td>
-    </tr>
-EOHTML
-	}
-	print "  </tbody>\n</table>";
-# LAST
+# MOST RECENT
 	print <<EOHTML;
 
 <h2 id="lastn-heading">$LAST Most Recent</h2>
@@ -142,17 +99,60 @@ SELECT real_url, encoded_url, username, count, unix_timestamp(date)
 			$year, $mon, $mday, $hour, $min, $sec);
 		$url =~ s/\&/\&amp;/g;
 		print <<EOHTML;
-<tr>
- <td class="numeral-td">$count</td>
- <td class="date-td">$date</td>
- <td>$who</td>
- <td><a href="$webhost$code">$code</a></td>
- <td class="url-td"><a href="$webhost$code">$url</a></td>
-</tr>
+    <tr>
+      <td class="numeral-td">$count</td>
+      <td class="date-td">$date</td>
+      <td>$who</td>
+      <td><a href="$webhost$code">$code</a></td>
+      <td class="url-td"><a href="$webhost$code">$url</a></td>
+    </tr>
 EOHTML
 	}
 	print "  </tbody>\n</table>";
+# MOST VIEWED
+	print <<EOHTML;
 
+<h2 id="topviewed-heading">$TOP Most Viewed</h2>
+
+<table class="url-table">
+  <thead>
+    <tr>
+      <th>Count</th>
+      <th>Date Added</th>
+      <th>Who</th>
+      <th>Code</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+EOHTML
+	my $q = sprintf("
+SELECT real_url, encoded_url, username, count, unix_timestamp(date)
+ FROM urls
+ ORDER BY count desc, date desc limit %s
+", $TOP);
+	my $sth = $dbh->prepare($q);
+	$sth->execute();
+	while (my @r = $sth->fetchrow_array) {
+		my ($url, $code, $who, $count, $when) = @r;
+		my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($when);
+		$year+=1900;
+		$mon++;
+		$who =~ s/\s/&nbsp;/g;
+		my $date = sprintf("%04d/%02d/%02d&nbsp;%02d:%02d:%02d",
+			$year, $mon, $mday, $hour, $min, $sec);
+		$url =~ s/\&/\&amp;/g;
+		print <<EOHTML;
+    <tr>
+      <td class="numeral-td">$count</td>
+      <td class="date-td">$date</td>
+      <td>$who</td>
+      <td><a href="$webhost$code">$code</a></td>
+      <td class="url-td"><a href="$webhost$code">$url</a></td>
+    </tr>
+EOHTML
+	}
+	print "  </tbody>\n</table>";
 # TOP POSTERS
 	print <<EOHTML;
 
