@@ -15,11 +15,11 @@ my $TOP = 10;
 my $LAST = 40;
 my $POSTER = 15;
 
-my $webhost = "http://pab.st/s?";
-my $database = "awlnk";
-my $user = "awlnk";
-my $password = "ukamNgRfjYfrxL5g";
-my $dsn = "DBI:mysql:database=$database:172.16.1.100:3306";
+my $webhost = "http://pab.st/a?";
+my $database = "avlnk";
+my $user = "root";
+my $password = "sheep";
+my $dsn = "DBI:mysql:database=$database";
 my %args = (
         'RaiseError' => 1,
 );
@@ -52,7 +52,7 @@ if (!$encode) {
 	}
 	# No arg, just dump top 5 and last 10
 	#select * from urls order by count desc, date desc limit 5;
-	#print "As of ", scalar localtime(time), " - $total total URLs<br>";
+	print "As of ", scalar localtime(time), " - $total total URLs<br>";
 	print <<EOHTML;
 <!DOCTYPE html>
 <html>
@@ -94,7 +94,7 @@ SELECT real_url, encoded_url, username, count, unix_timestamp(date)
 		$mon++;
 		$who =~ s/\s/&nbsp;/g;
 		my $date = sprintf("%04d/%02d/%02d&nbsp;%02d:%02d:%02d",
-		$year, $mon, $mday, $hour, $min, $sec);
+			$year, $mon, $mday, $hour, $min, $sec);
 		$url =~ s/\&/\&amp;/g;
 		print <<EOHTML;
 <tr>
@@ -252,9 +252,9 @@ UPDATE urls
 ", $dbh->quote($encode));
 	$dbh->do($q);
 	$count++;
-	print "Refresh: 1; URL=$url\n\n";
-	printf("You are being redirected to <a href=\"%s\">%s</a><br>\n", $url, $url);
-	printf("(url added %s by %s - viewed %s times)<br>\n", scalar localtime($when), $who, $count);
+	print "Refresh: 0; URL=$url\n\n";
+#	printf("You are being redirected to <a href=\"%s\">%s</a><br>\n", $url, $url);
+#	printf("(url added %s by %s - viewed %s times)<br>\n", scalar localtime($when), $who, $count);
 	exit;
 }
 Error("Unknown code: '$encode'");
