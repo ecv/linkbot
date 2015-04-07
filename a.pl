@@ -57,7 +57,7 @@ print <<EOHTML;
 </head>
 <body>
 <div id="page-heading">
-<img src="bowling.jpg" width="200" height="300" alt="bowling"><img src="patio.gif" width="218" height="300" alt="patio"><img src="http://rumspringa.subtle.org/~zebe/pabstbillboard.jpg" width="400" height="296" alt="what will you have sir">
+<img src="bowling.jpg" width="231" height="296" alt="bowling" /><img src="pabstbillboard.jpg" width="400" height="296" alt="what will you have sir" />
 </div> <!-- /#page-heading -->
 
 <div id="contentarea">
