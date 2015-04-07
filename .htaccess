@@ -1,0 +1,3 @@
+<Files ~ "^(s|m|a|v)$">
+  SetHandler cgi-script
+</Files>
