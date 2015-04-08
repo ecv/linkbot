@@ -9,7 +9,7 @@
         - restart linkbot
 
     - name: upstart script
-      copy: conf/upstart dest=/etc/init/linkbot.conf
+      copy: src=conf/upstart dest=/etc/init/linkbot.conf
 
   handlers:
     - name: restart linkbot
