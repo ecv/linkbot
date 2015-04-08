@@ -25,12 +25,12 @@ my $local_hostname = "pab.st";
 
 my $conn;
 
-$0 = "awlnk version $VERSION";
+$0 = "avlnk version $VERSION";
 
 my $database = "avlnk";
 my $user = "root";
-my $password = "sheep";
-my $dsn = "DBI:mysql:database=$database";
+my $password = "caiMoaYi7";
+my $dsn = "DBI:mysql:database=$database:172.16.1.100:3306";
 my %args = (
 	'RaiseError' => 1,
 );
@@ -46,12 +46,12 @@ my $MIN_LENGTH = 53;
 
 
 fork && do {
-	print "awlnk started";
+	print "avlnk started";
 	exit;
 };
 
 # pipe STDOUT to logfile
-my $logfile = "awlnk.log-" . $$;
+my $logfile = "/opt/avara/avlnk.log-" . $$;
 
 open my $oldout, ">&STDOUT";
 
@@ -65,11 +65,6 @@ my $NICK = "pam";
 my $mynick = $NICK;
 my $ircname = "that's what she said";
 my $mychan = "#avara";
-#my $mychan2 = "#thongsdaily";
-#my $mychan3 = "#elsewhere";
-#my $mychan4 = "#ugf";
-#my $mychan5 = "#pedalphiles";
-#my $mychan6 = "#tvguide";
 
 my $this_program = $0;
 my $SERVER_INDEX = 0;
@@ -448,7 +443,7 @@ sub on_version {
 	my ($self, $event) = @_;
 	my $nick = $event->nick;
 
-	$self->ctcp_reply($nick, "VERSION awlnk bot v${VERSION}");
+	$self->ctcp_reply($nick, "VERSION avlnk bot v${VERSION}");
 	printf("*** CTCP VERSION (%s) request from %s received\n", join (' ', ($event->args)), $nick);
 }
 

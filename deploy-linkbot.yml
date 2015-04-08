@@ -1,0 +1,16 @@
+---
+- name: deploy linkbot
+  hosts: spruce
+  sudo: true
+
+  tasks:
+    - copy: src=linkbot.pl dest=/opt/avara/linkbot.pl mode=0755
+      notify: 
+        - restart linkbot
+
+    - name: upstart script
+      copy: conf/upstart dest=/etc/init/linkbot.conf
+
+  handlers:
+    - name: restart linkbot
+      service: name=linkbot state=restarted
