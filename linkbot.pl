@@ -507,7 +507,7 @@ VALUES (%s, %s, %s, 0, from_unixtime(%s))",
 		$dbh->quote($URL), $dbh->quote($str), $dbh->quote($nick), $NOW);
 	$dbh->do($q);
 	print "New URL: $URL = $str\n";
-	return sprintf("http://$BASE_URL/s?%s", $str);
+	return sprintf("http://$BASE_URL/a?%s", $str);
 }
 
 sub record_public {
