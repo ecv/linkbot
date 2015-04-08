@@ -21,7 +21,7 @@ my $webhost = "http://pab.st/a?";
 my $database = "avlnk";
 my $user = "avlnk";
 my $password = "caiMoaYi7";
-my $dsn = "DBI:mysql:database=$database";
+my $dsn = "DBI:mysql:database=$database:172.16.1.100:3306";
 my %args = (
         'RaiseError' => 1,
 );

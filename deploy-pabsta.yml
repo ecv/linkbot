@@ -1,0 +1,8 @@
+---
+- name: deploy pab.st/a
+  hosts: spruce
+  sudo: true
+
+  tasks:
+    - copy: src=avlnk.pl dest=/var/www/cgi-bin mode=0755
+    - copy: src=www/ dest=/var/www/pab.st/htdocs/avlnk
