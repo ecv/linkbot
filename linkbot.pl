@@ -89,6 +89,7 @@ while (!$conn) {
                         Server  => $server,
                         Port    => 4110,
                         Ircname => $ircname,
+                        SSL => 1,
 			LocalAddr => $local_hostname
 		);
 		return if $irc->error;
