@@ -82,9 +82,9 @@ while (!$conn) {
 		$conn = $irc->newconn(
 			Nick    => $mynick,
                         Server  => $server,
-                        Port    => 6697,
+                        Port    => 4410,
                         Ircname => $ircname,
-                        SSL => '1',
+                        SSL => '0',
 			LocalAddr => $local_hostname
 		);
 		return if $irc->error;
@@ -126,9 +126,9 @@ while (1) {
 				$conn = $irc->newconn(
 					Nick    => $mynick,
                         		Server  => $server,
-                        		Port    => 6697,
+                        		Port    => 4410,
                         		Ircname => $ircname,
-                        		SSL => '1',
+                        		SSL => '0',
 					LocalAddr => $local_hostname
 				);
 				alarm 0;
