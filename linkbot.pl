@@ -28,7 +28,7 @@ my $conn;
 $0 = "avlnk version $VERSION";
 
 my $database = "avlnk";
-my $user = "root";
+my $user = "avlnk";
 my $password = "caiMoaYi7";
 my $dsn = "DBI:mysql:database=$database:172.16.1.100:3306";
 my %args = (
@@ -51,7 +51,7 @@ fork && do {
 };
 
 # pipe STDOUT to logfile
-my $logfile = "/opt/avara/avlnk.log-" . $$;
+my $logfile = "/opt/avara/avlnk.log";
 
 open my $oldout, ">&STDOUT";
 
@@ -84,7 +84,7 @@ while (!$conn) {
                         Server  => $server,
                         Port    => 6697,
                         Ircname => $ircname,
-                        SSL => 1,
+                        SSL => '1',
 			LocalAddr => $local_hostname
 		);
 		return if $irc->error;
