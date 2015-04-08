@@ -51,6 +51,7 @@ print <<EOHTML;
 <!DOCTYPE html>
 <html>
 <head>
+<base href="/avlnk/">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>URL list | pab.st/a</title>
   <link type="text/css" rel="stylesheet" media="all" href="a.css">
