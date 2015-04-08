@@ -32,8 +32,16 @@ if (!$dbh) {
         exit;
 }
 
-
-my $encode = $ARGV[0];
+# handle both command line and fcgi query_string
+#
+my $encode;
+if (defined($ARGV[0])) {
+  $encode = $ARGV[0];
+  } else {
+  if (defined($ENV{'QUERY_STRING'})) {
+    $encode = $ENV{'QUERY_STRING'};
+  }
+}
 
 if (!$encode) {
 	print "\n";
