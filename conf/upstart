@@ -1,6 +1,6 @@
 description     "avara irc linkbot, shit perl"
 
-setuid ecv
+setuid butts
 
 start on runlevel [2345]
 stop on runlevel [!2345]
