@@ -488,7 +488,7 @@ SELECT real_url, encoded_url, username, count, unix_timestamp(date)
 
 	if ($ret) {
 		printf("REPOST: $URL = $code\n");
-		return sprintf("http://$BASE_URL/s?%s   (\002repost\002 from %s by %s - viewed %s times)",
+		return sprintf("http://$BASE_URL/a?%s   (\002repost\002 from %s by %s - viewed %s times)",
 			$code, sprintf("%s ago", pp($when)),
 			$who ? ($who eq $nick) ? "You!" : $who :
 			"unknown", $count);
