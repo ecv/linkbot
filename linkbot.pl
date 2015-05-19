@@ -9,7 +9,7 @@ use DBI;
 
 use strict;
 
-my $VERSION = "1.0";
+my $VERSION = "1.0.1";
 my %CMD = (
 	'shutdown'	=> '__SHUTDOWN__',
 	'restore'	=> '__RESTORE__',
@@ -635,7 +635,7 @@ sub pp {
 
 ################################
 # do_quote( $self, $destination, $source, $ticker )
-#	$destiantion = where to reply (a channel, or a nickname)
+#	$destination = where to reply (a channel, or a nickname)
 #	$source = who sent me the query
 #	$ticker = The ticker(s) to look up - can be whitespace, comma, or plus-sign separated
 ################################
@@ -646,7 +646,7 @@ sub do_quote {
 	my $param = shift;
 
 	my $MAX_TICK = 2;	# +1
-	my $stock_url = "http://finance.yahoo.com/d/q?f=nsl1c1p2vk1c6&s=";
+	my $stock_url = "http://finance.yahoo.com/d/quotes.csv?f=nsl1c1p2vk1c6&s=";
 
 	my $ticker = uc($param);
 	my @tickers = split(/[\+\s,]/, $ticker);
