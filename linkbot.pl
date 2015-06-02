@@ -601,6 +601,7 @@ SELECT real_url
 
 sub clean_url {
 	my $url = shift;
+  $url =~ s#/$##g; 
 
 	# Make the URL have only printable chars.
 	# NOTE: This is gross.
