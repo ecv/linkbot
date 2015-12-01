@@ -4,8 +4,8 @@ use Net::IRC;
 use DB_File;
 use Time::HiRes qw(sleep);
 use LWP;
-
 use DBI;
+use Lingua::EN::Numbers qw(num2en num2en_ordinal);
 
 use strict;
 
@@ -38,8 +38,8 @@ my %args = (
 my %STOCK_CACHE;
 
 my @SERVERS = (
-	"spruce.subtle.org",
-	"parkcentral.subtle.org"
+	"irc.sine.com",
+	"irc.subtle.org"
 );
 
 my $MIN_LENGTH = 53;
@@ -297,9 +297,10 @@ sub on_public {
 		$url = encode_url($passed_url, $nick);
 		if (length($passed_url) > $MIN_LENGTH) {
 			if ($url =~ /\(\002repost\002 from (.+) by (.+) - viewed (\d+) times\)/) {
-				my $when = $1;
+				my $when = num2en($1);
 				my $who = $2;
 				my $views = $3;
+
 				if ($who =~ /You/) {
 					$url =~ s/\s+\(.+\)$//g;
 					$self->privmsg($channel, "<$nick> $url ($views views since $when)");
