@@ -1,6 +1,6 @@
 ---
 - name: deploy linkbot
-  hosts: spruce
+  hosts: spruce.sine.com
   sudo: true
 
   tasks:
