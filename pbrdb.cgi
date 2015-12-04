@@ -21,10 +21,8 @@ select STDOUT; $| = 1;
 
 # GET /url
 
-# encode_url:
-#   shorten url
 #   if already in db, 
-#     return repost shame ('nice repost - $nick posted it $when')
+#     return shortened + repost shame ('nice repost - $nick posted it $when')
 
 	my $q = sprintf("
 SELECT real_url, encoded_url, username, count, unix_timestamp(date)
@@ -41,6 +39,7 @@ SELECT real_url, encoded_url, username, count, unix_timestamp(date)
 	$sth->finish;
 
 #   else,
+#     shorten url
 #     silently add to pbrdb,
 #     return 
 
